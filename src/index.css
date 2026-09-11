@@ -1,0 +1,53 @@
+@import "tailwindcss";
+
+@layer base {
+  body {
+    font-family: 'Inter', sans-serif;
+    background-color: #131313;
+    color: #e0e0e0;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  h1, h2, h3, .font-headline {
+    font-family: 'Bodoni Moda', Georgia, serif;
+  }
+}
+
+.font-bodoni {
+  font-family: 'Bodoni Moda', serif;
+}
+
+.font-inter {
+  font-family: 'Inter', sans-serif;
+}
+
+.glow-effect {
+  transition: all 0.3s ease;
+}
+
+.glow-effect:hover {
+  box-shadow: 0 0 22px rgba(230, 0, 38, 0.6);
+}
+
+.glow-border {
+  box-shadow: 0 0 15px rgba(230, 0, 38, 0.25);
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: #0c0c0c;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #333333;
+  border-radius: 3px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #e60026;
+}

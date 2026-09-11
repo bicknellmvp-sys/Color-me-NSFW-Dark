@@ -1,0 +1,6 @@
+{
+  "name": "COLOR ME NSFW",
+  "description": "Curated dark coloring experiences, physical archives, and interactive digital coloring studio for the bold and unapologetic.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
