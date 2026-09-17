@@ -153,6 +153,22 @@ Designed around themes of occult iconography, cyber-gothic architecture, dark su
 
 ---
 
+## 🖼️ How to Add Custom Photos & Artwork
+
+### Option 1: Live In-App Upload (No Coding Required)
+1. Launch the app and click **"Upload Custom Plates"** (or open the **Batch Importer** modal from the gallery).
+2. Drag and drop your **PNG, JPG, or SVG** files.
+3. Click **"Apply Plates"** to instantly render them across the 42-plate gallery and make them colorable in the **Digital Coloring Studio**. Custom uploads are stored in browser local storage.
+
+### Option 2: Permanent Asset Replacement in Code
+1. Place image files into `/public` or `/assets` (e.g., `/public/covers/my-cover.jpg` or `/public/plates/plate-01.png`).
+2. Update the corresponding data files:
+   - **Book Covers & Preview Pages**: Edit `coverImage` or `previewPages` in `src/data/volumes.ts`.
+   - **Default Gallery Plates**: Edit or replace the `svgDataUri` entries in `src/data/plates.ts`.
+   - **Creator / About Photo**: Update the image element in `src/components/AboutCreator.tsx`.
+
+---
+
 ## 🎨 Color Palette & Theming
 
 The application utilizes a dark noir aesthetic palette:
