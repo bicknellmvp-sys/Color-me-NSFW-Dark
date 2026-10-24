@@ -1,4 +1,21 @@
 import { ArchiveVolume } from '../types';
+import creatorPortrait from '../assets/images/creator_architect_portrait_1791530272514.jpg';
+import basementProtocolImg from '../assets/images/basement_protocol_1791530253838.jpg';
+import midnightCrossfireImg from '../assets/images/midnight_crossfire_1791530191425.jpg';
+import steelPulseImg from '../assets/images/steel_pulse_1791530215601.jpg';
+import primalReckoningImg from '../assets/images/primal_reckoning_1791530226959.jpg';
+import laceAndLongingImg from '../assets/images/lace_and_longing_1791530237888.jpg';
+import tattooFlashImg from '../assets/images/tattoo_flash_sketchbook_1791530263658.jpg';
+
+export {
+  creatorPortrait,
+  basementProtocolImg,
+  midnightCrossfireImg,
+  steelPulseImg,
+  primalReckoningImg,
+  laceAndLongingImg,
+  tattooFlashImg
+};
 
 // High resolution dark gothic vector line art SVG data URIs
 export const SVG_BOUND_FORM = `data:image/svg+xml;utf8,${encodeURIComponent(`
@@ -87,7 +104,7 @@ export const VOLUMES_DATA: ArchiveVolume[] = [
     title: 'The Bound Form',
     subtitle: 'Intricate linework study.',
     description: 'An exploration of physical restriction, muscle tension, and heavy chainwork. Features 42 high-density original line vector illustrations printed on premium heavy matte stock.',
-    coverImage: SVG_BOUND_FORM,
+    coverImage: basementProtocolImg,
     price: 32.00,
     badge: 'Vol. 01',
     pagesCount: 42,
@@ -95,8 +112,10 @@ export const VOLUMES_DATA: ArchiveVolume[] = [
     paperSpec: '160gsm Archival Uncoated Black/White Line Stock',
     bindingSpec: 'Smyth-Sewn Exposed Spine (Lay-Flat 180°)',
     samplePages: [
-      SVG_BOUND_FORM,
-      SVG_BASEMENT_PROTOCOL
+      basementProtocolImg,
+      midnightCrossfireImg,
+      steelPulseImg,
+      laceAndLongingImg
     ]
   },
   {
@@ -105,7 +124,7 @@ export const VOLUMES_DATA: ArchiveVolume[] = [
     title: 'Basement Protocol',
     subtitle: 'Gritty industrial textures.',
     description: 'A descent into subterranean concrete, raw steel rigging, and high-contrast shadow work. Designed for heavy ink saturation, watercolor markers, or digital shading.',
-    coverImage: SVG_BASEMENT_PROTOCOL,
+    coverImage: basementProtocolImg,
     price: 34.00,
     badge: 'Vol. 02',
     pagesCount: 48,
@@ -113,8 +132,9 @@ export const VOLUMES_DATA: ArchiveVolume[] = [
     paperSpec: '180gsm Industrial Grain Kraft-Feel Paper',
     bindingSpec: 'Soft-Touch Foil Stamped Black Linen Case',
     samplePages: [
-      SVG_BASEMENT_PROTOCOL,
-      SVG_OBSIDIAN_SILK
+      basementProtocolImg,
+      steelPulseImg,
+      midnightCrossfireImg
     ]
   },
   {
@@ -123,7 +143,7 @@ export const VOLUMES_DATA: ArchiveVolume[] = [
     title: 'Obsidian & Silk',
     subtitle: 'Sensual geometric contrast.',
     description: 'Interweaving delicate silk drapes with brutalist obsidian geometry. 36 double-spread compositions crafted specifically for monochrome, crimson, or metallic gold coloring.',
-    coverImage: SVG_OBSIDIAN_SILK,
+    coverImage: laceAndLongingImg,
     price: 36.00,
     badge: 'Vol. 03',
     pagesCount: 36,
@@ -131,8 +151,9 @@ export const VOLUMES_DATA: ArchiveVolume[] = [
     paperSpec: '200gsm Heavyweight Velvet Finish Uncoated',
     bindingSpec: 'Hardcover Thread-Bound with Silver Foil Embossing',
     samplePages: [
-      SVG_OBSIDIAN_SILK,
-      SVG_BOUND_FORM
+      laceAndLongingImg,
+      tattooFlashImg,
+      midnightCrossfireImg
     ]
   }
 ];
@@ -143,30 +164,30 @@ export const UPCOMING_VOLUME: ArchiveVolume = {
   title: 'Slave a Demon the Solomonic Way',
   subtitle: 'A Ritual Coloring Book',
   description: 'Prepare for our most esoteric and complex volume yet. 72 demonic sigils and ceremonial figures rendered in ultra-fine line art inspired by medieval grimoires and modern occultism.',
-  coverImage: SVG_SOLOMONIC_DEMON,
+  coverImage: primalReckoningImg,
   price: 45.00,
   badge: 'UPCOMING',
   pagesCount: 72,
   releaseDate: 'Samhain / October 2026',
   paperSpec: '220gsm Archival Black-Edged Gothic Vellum',
   bindingSpec: 'Leather-Textured Hardcover with Debossed Red Gold Sigil',
-  samplePages: [SVG_SOLOMONIC_DEMON],
+  samplePages: [primalReckoningImg, steelPulseImg],
   isUpcoming: true
 };
 
 export const CREATOR_INFO = {
   name: 'The Architect',
   title: 'About the Creator',
-  photoUrl: SVG_CREATOR_PORTRAIT,
-  bio: 'Driven by a fascination with the intersection of the sacred and the profane, the creator behind Laevus explores the boundaries of digital ink. With a background in classical illustration and industrial design, every volume is a curated descent into shadow and form.',
+  photoUrl: creatorPortrait,
+  bio: 'Driven by a fascination with the intersection of the sacred and the profane, the creator behind Left Hand Apps explores the boundaries of digital ink. With a background in classical illustration and industrial design, every volume is a curated descent into shadow and form.',
   quote: '"Art should not just be seen; it should be inhabited. These pages are invitations to lose yourself in the lines."'
 };
 
 export const SVG_FALLBACKS: Record<string, string> = {
-  'vol-01': SVG_BOUND_FORM,
-  'vol-02': SVG_BASEMENT_PROTOCOL,
-  'vol-03': SVG_OBSIDIAN_SILK,
-  'vol-upcoming': SVG_SOLOMONIC_DEMON,
-  'creator': SVG_CREATOR_PORTRAIT,
-  'default': SVG_BOUND_FORM
+  'vol-01': basementProtocolImg,
+  'vol-02': basementProtocolImg,
+  'vol-03': laceAndLongingImg,
+  'vol-upcoming': primalReckoningImg,
+  'creator': creatorPortrait,
+  'default': basementProtocolImg
 };

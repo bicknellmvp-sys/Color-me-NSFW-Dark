@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
-import { Flame, Check, ShieldAlert } from 'lucide-react';
+import { Flame, Check, ShieldAlert, Sparkles } from 'lucide-react';
+import { primalReckoningImg } from '../data/volumes';
 
 export const UpcomingRelease: React.FC = () => {
   const [email, setEmail] = useState('');
@@ -43,6 +44,19 @@ export const UpcomingRelease: React.FC = () => {
         <p className="font-inter text-base text-[#b0b0b0] max-w-xl leading-relaxed">
           Prepare for our most esoteric and complex volume yet. Join the inner circle to be notified upon release.
         </p>
+
+        {/* Teaser Plate Card */}
+        <div className="relative w-full max-w-sm aspect-[3/4] bg-black border border-[#333333] overflow-hidden shadow-2xl group my-2">
+          <img
+            src={primalReckoningImg}
+            alt="Slave a Demon - Primal Reckoning"
+            referrerPolicy="no-referrer"
+            className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
+          />
+          <div className="absolute top-3 left-3 bg-black/85 border border-[#333333] px-2.5 py-1 text-[10px] font-mono text-[#e60026] uppercase font-bold tracking-widest">
+            TEASER PLATE • ADVANCE PREVIEW
+          </div>
+        </div>
 
         {joined ? (
           <div className="w-full max-w-md bg-[#201f1f] border border-[#e60026] p-6 text-center flex flex-col items-center gap-3">

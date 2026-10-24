@@ -51,7 +51,7 @@ export const FeaturedArchives: React.FC<FeaturedArchivesProps> = ({
                 src={mainBook.coverImage}
                 alt={mainBook.title}
                 referrerPolicy="no-referrer"
-                className="w-full h-full object-cover mix-blend-screen opacity-90 group-hover:scale-105 transition-transform duration-700"
+                className="w-full h-full object-cover opacity-95 group-hover:scale-105 transition-transform duration-700"
               />
 
               {/* Badge */}

@@ -61,7 +61,7 @@ export const VolumeDetailModal: React.FC<VolumeDetailModalProps> = ({
                 src={volume.samplePages[activeSampleIndex] || volume.coverImage}
                 alt={volume.title}
                 referrerPolicy="no-referrer"
-                className="w-full h-full object-cover mix-blend-screen"
+                className="w-full h-full object-contain bg-black"
               />
               <div className="absolute top-3 left-3 bg-black/70 border border-[#333333] px-3 py-1 text-[11px] font-mono text-[#ffb3ae] uppercase">
                 {volume.badge}
@@ -79,7 +79,7 @@ export const VolumeDetailModal: React.FC<VolumeDetailModalProps> = ({
                       activeSampleIndex === idx ? 'border-[#e60026]' : 'border-[#333333] opacity-60'
                     }`}
                   >
-                    <img src={sample} alt="Sample preview" referrerPolicy="no-referrer" className="w-full h-full object-cover mix-blend-screen" />
+                    <img src={sample} alt="Sample preview" referrerPolicy="no-referrer" className="w-full h-full object-contain bg-black" />
                   </button>
                 ))}
               </div>

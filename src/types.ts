@@ -1,3 +1,21 @@
+export type AppPage = 
+  | 'home' 
+  | 'studio' 
+  | 'gallery' 
+  | 'category' 
+  | 'volume' 
+  | 'reader' 
+  | 'downloads' 
+  | 'about';
+
+export type PlateCategory = 
+  | 'All'
+  | 'Bondage Studies' 
+  | 'Sigils & Occult' 
+  | 'Industrial Chains' 
+  | 'Latex & Silhouette' 
+  | 'Erotic Geometry';
+
 export interface ColoringPage {
   id: string;
   title: string;

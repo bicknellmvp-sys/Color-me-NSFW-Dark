@@ -13,6 +13,17 @@ export const DownloadCenterModal: React.FC<DownloadCenterModalProps> = ({ isOpen
   if (!isOpen) return null;
 
   const downloadSampleImage = (url: string, filename: string) => {
+    if (url.startsWith('/') || url.startsWith('http') || url.includes('.jpg')) {
+      const a = document.createElement('a');
+      a.href = url;
+      a.download = `${filename}.jpg`;
+      a.target = '_blank';
+      a.click();
+      setDownloadedId(filename);
+      setTimeout(() => setDownloadedId(null), 2500);
+      return;
+    }
+
     // Generate downloadable image or canvas
     const img = new Image();
     img.crossOrigin = 'anonymous';

@@ -1,3 +1,12 @@
+import { 
+  basementProtocolImg, 
+  midnightCrossfireImg, 
+  steelPulseImg, 
+  primalReckoningImg, 
+  laceAndLongingImg, 
+  tattooFlashImg 
+} from './volumes';
+
 export interface PlateItem {
   id: string;
   plateNumber: number;
@@ -5,6 +14,8 @@ export interface PlateItem {
   category: 'Bondage Studies' | 'Sigils & Occult' | 'Industrial Chains' | 'Latex & Silhouette' | 'Erotic Geometry';
   description: string;
   svgDataUri: string;
+  isOriginalArtwork?: boolean;
+  badge?: string;
 }
 
 // Helper to generate crisp, dark gothic vector line art SVGs for all 42 plates
@@ -82,10 +93,25 @@ export function generatePlateSVG(plateNum: number, title: string, category: stri
   return `data:image/svg+xml;utf8,${encodeURIComponent(svgContent)}`;
 }
 
+// Custom mapping of authentic artist illustrations
+const AUTHENTIC_PLATES_MAP: Record<number, { image: string; badge: string }> = {
+  1: { image: basementProtocolImg, badge: 'Official Plate' },
+  2: { image: midnightCrossfireImg, badge: 'Official Plate' },
+  3: { image: steelPulseImg, badge: 'Official Plate' },
+  4: { image: primalReckoningImg, badge: 'Official Plate' },
+  5: { image: laceAndLongingImg, badge: 'Official Plate' },
+  6: { image: tattooFlashImg, badge: 'Official Plate' },
+};
+
 // Titles & Categories for the 42 plates in the book
 const PLATE_TITLES = [
+  { title: "Basement Protocol", category: "Industrial Chains", desc: "Heavy underground concrete chamber with exposed pipes, bare bulb, and captive chair tension linework." },
+  { title: "Midnight Crossfire", category: "Latex & Silhouette", desc: "Classic film noir detective leaping across a vintage coupe hood firing into rainy neon streets." },
+  { title: "Steel Pulse", category: "Industrial Chains", desc: "Biomechanical cyber-minotaur cyborg with exposed hydraulic ribcage and battle axe." },
+  { title: "Primal Reckoning", category: "Sigils & Occult", desc: "Long-haired barbarian warrior with broadsword battling a shadowy hellhound demon under Gothic stained glass." },
+  { title: "Lace & Longing", category: "Erotic Geometry", desc: "Art Nouveau siren dancing in sheer floral lace negligee framed by ornate circular botanical filigree." },
+  { title: "Tattoo Flash & Mandalas", category: "Bondage Studies", desc: "Studio sketchbook flash sheet featuring traditional eagle, wild poppies, roaring tiger, and sacred mandalas." },
   { title: "The Bound Form", category: "Bondage Studies", desc: "Classic rope harness linework with anatomical tension vectors." },
-  { title: "Basement Protocol", category: "Industrial Chains", desc: "Rigging and heavy iron chain links against brutalist concrete arches." },
   { title: "Obsidian & Silk", category: "Erotic Geometry", desc: "Geometric drape study contrasting smooth silk curves with sharp stone angles." },
   { title: "Solomonic Sigil I", category: "Sigils & Occult", desc: "Occult ceremonial pentacle with classical grimoire lettering." },
   { title: "Latex Gloss Study", category: "Latex & Silhouette", desc: "Reflective highlight contours on high-gloss body-suit forms." },
@@ -120,22 +146,20 @@ const PLATE_TITLES = [
   { title: "High Gloss Corset", category: "Latex & Silhouette", desc: "Underbust corset with boning seam guides." },
   { title: "Tortoise Shell Binding", category: "Bondage Studies", desc: "Kikkou (tortoise shell) rope pattern across the back." },
   { title: "Obsidian Mirror", category: "Erotic Geometry", desc: "Oval reflective surface with geometric floral sigils." },
-  { title: "Goetia Triangle", category: "Sigils & Occult", desc: "Triangle of Evocation with Michael and Tetragrammaton lettering." },
-  { title: "Restraint Chair", category: "Industrial Chains", desc: "Industrial steel chair with padded wrist and ankle locks." },
-  { title: "Seamless Body Harness", category: "Latex & Silhouette", desc: "Continuous rubber strap harness with O-ring intersections." },
-  { title: "The Serpent Sigil", category: "Sigils & Occult", desc: "Ouroboros serpent eating its tail around a central pentagram." },
-  { title: "Suspension Web", category: "Bondage Studies", desc: "Complex multi-point rope rigging creating a spiderweb structure." },
-  { title: "Final Ritual Seal", category: "Sigils & Occult", desc: "The master climax sigil combining all 42 plate themes into one." }
+  { title: "Goetia Triangle", category: "Sigils & Occult", desc: "Triangle of Evocation with Michael and Tetragrammaton lettering." }
 ] as const;
 
 export const ALL_42_PLATES: PlateItem[] = PLATE_TITLES.map((pt, idx) => {
   const plateNumber = idx + 1;
+  const authentic = AUTHENTIC_PLATES_MAP[plateNumber];
   return {
     id: `plate-${plateNumber}`,
     plateNumber,
     title: pt.title,
     category: pt.category as PlateItem['category'],
     description: pt.desc,
-    svgDataUri: generatePlateSVG(plateNumber, pt.title, pt.category)
+    svgDataUri: authentic ? authentic.image : generatePlateSVG(plateNumber, pt.title, pt.category),
+    isOriginalArtwork: !!authentic,
+    badge: authentic ? authentic.badge : undefined
   };
 });

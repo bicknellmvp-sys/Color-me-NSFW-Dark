@@ -15,12 +15,15 @@ import { DigitalColoringStudio } from './components/DigitalColoringStudio';
 import { LegalModal } from './components/LegalModal';
 import { AgeGateModal } from './components/AgeGateModal';
 import { DownloadCenterModal } from './components/DownloadCenterModal';
-import { BatchUploadModal } from './components/BatchUploadModal';
 import { VOLUMES_DATA, SVG_SOLOMONIC_DEMON } from './data/volumes';
 import { ALL_42_PLATES, PlateItem } from './data/plates';
-import { ArchiveVolume, CartItem } from './types';
+import { ArchiveVolume, CartItem, AppPage, PlateCategory } from './types';
 
 export default function App() {
+  // Navigation & Page routing state
+  const [currentPage, setCurrentPage] = useState<AppPage>('home');
+  const [activeCategory, setActiveCategory] = useState<PlateCategory>('All');
+
   // Modal states
   const [isNavOpen, setIsNavOpen] = useState(false);
   const [isCartOpen, setIsCartOpen] = useState(false);
@@ -122,29 +125,52 @@ export default function App() {
     setCartItems([]);
   };
 
-  // Section Navigation
+  // Page Navigation Handler
+  const handleNavigatePage = (page: AppPage, category?: PlateCategory) => {
+    setCurrentPage(page);
+    if (category) {
+      setActiveCategory(category);
+    }
+    // If navigating to reader or downloads, open corresponding modal as well
+    if (page === 'reader') {
+      setIsBookReaderOpen(true);
+    } else if (page === 'downloads') {
+      setIsDownloadsOpen(true);
+    }
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  };
+
+  // Section Navigation (for smooth scrolling within pages)
   const scrollToSection = (sectionId: string) => {
-    const el = document.getElementById(sectionId);
-    if (el) {
-      el.scrollIntoView({ behavior: 'smooth' });
+    if (currentPage !== 'home') {
+      setCurrentPage('home');
+      setTimeout(() => {
+        const el = document.getElementById(sectionId);
+        if (el) el.scrollIntoView({ behavior: 'smooth' });
+      }, 100);
+    } else {
+      const el = document.getElementById(sectionId);
+      if (el) el.scrollIntoView({ behavior: 'smooth' });
     }
   };
 
   const handleOpenStudioWithVolume = (volume: ArchiveVolume) => {
     setSelectedVolume(volume);
     setCustomStudioPlate(null);
-    setIsStudioOpen(true);
+    setCurrentPage('studio');
+    window.scrollTo({ top: 0, behavior: 'smooth' });
   };
 
   const handleOpenStudioWithPlate = (svgUri: string, title: string) => {
     setCustomStudioPlate({ svgUri, title });
-    setIsStudioOpen(true);
+    setCurrentPage('studio');
+    window.scrollTo({ top: 0, behavior: 'smooth' });
   };
 
   const cartTotalCount = cartItems.reduce((sum, item) => sum + item.quantity, 0);
 
   return (
-    <div className="flex flex-col min-h-screen relative bg-[#131313] text-[#e0e0e0] font-inter overflow-x-hidden">
+    <div className="flex flex-col min-h-screen relative bg-[#09090b] text-[#e0e0e0] font-inter overflow-x-hidden">
       {/* Age Gate 18+ Advisory */}
       <AgeGateModal />
 
@@ -162,66 +188,144 @@ export default function App() {
       <Header
         onOpenNav={() => setIsNavOpen(true)}
         onOpenCart={() => setIsCartOpen(true)}
-        onOpenStudio={() => setIsStudioOpen(true)}
-        onOpenDownloads={() => setIsDownloadsOpen(true)}
-        onOpenReadBook={() => setIsBookReaderOpen(true)}
-        onOpenBatchUpload={() => setIsBatchUploadOpen(true)}
-        onScrollToPictures={() => scrollToSection('pictures-archive')}
+        currentPage={currentPage}
+        activeCategory={activeCategory}
+        onNavigatePage={handleNavigatePage}
         cartCount={cartTotalCount}
       />
 
-      {/* Main Content Area */}
-      <main className="flex-grow pt-20 relative z-10">
-        {/* Hero Section */}
-        <Hero
-          onExploreClick={() => scrollToSection('pictures-archive')}
-          onStudioClick={() => setIsStudioOpen(true)}
-          onReadBookClick={() => setIsBookReaderOpen(true)}
-        />
+      {/* Dynamic Page Views based on Hamburger Menu & Navigation */}
+      <main className="flex-grow pt-24 relative z-10">
+        
+        {/* PAGE 1: Dedicated Color by Numbers Studio */}
+        {currentPage === 'studio' && (
+          <DigitalColoringStudio
+            isOpen={true}
+            isPageMode={true}
+            onClose={() => setCurrentPage('home')}
+            selectedVolume={selectedVolume}
+            customPlate={customStudioPlate}
+          />
+        )}
 
-        {/* Featured Flagship Book Section */}
-        <FeaturedArchives
-          volumes={VOLUMES_DATA}
-          onSelectVolume={(vol) => setSelectedVolume(vol)}
-          onAddToCart={handleAddToCart}
-          onOpenStudioWithVolume={handleOpenStudioWithVolume}
-          onOpenReadBook={() => setIsBookReaderOpen(true)}
-        />
+        {/* PAGE 2: Dedicated Category Page (Separate page via hamburger menu) */}
+        {currentPage === 'category' && (
+          <div>
+            <PlatesArchiveGallery
+              plates={activePlates}
+              initialCategory={activeCategory}
+              isCategoryPageMode={true}
+              onSelectCategory={(cat) => setActiveCategory(cat)}
+              onOpenStudioWithPlate={handleOpenStudioWithPlate}
+              onOpenDownloads={() => setIsDownloadsOpen(true)}
+            />
+          </div>
+        )}
 
-        {/* Line Art Picture Gallery */}
-        <PlatesArchiveGallery
-          plates={activePlates}
-          onOpenStudioWithPlate={handleOpenStudioWithPlate}
-          onOpenDownloads={() => setIsDownloadsOpen(true)}
-          onOpenBatchUpload={() => setIsBatchUploadOpen(true)}
-        />
+        {/* PAGE 3: All 42 Plates Gallery Page */}
+        {currentPage === 'gallery' && (
+          <div>
+            <PlatesArchiveGallery
+              plates={activePlates}
+              initialCategory="All"
+              isCategoryPageMode={true}
+              onSelectCategory={(cat) => {
+                setActiveCategory(cat);
+                if (cat !== 'All') {
+                  setCurrentPage('category');
+                }
+              }}
+              onOpenStudioWithPlate={handleOpenStudioWithPlate}
+              onOpenDownloads={() => setIsDownloadsOpen(true)}
+            />
+          </div>
+        )}
 
-        {/* The Ink & Ledger Newsletter */}
-        <InkLedger />
+        {/* PAGE 4: The Flagship Volume 01 Page */}
+        {currentPage === 'volume' && (
+          <div className="py-12">
+            <FeaturedArchives
+              volumes={VOLUMES_DATA}
+              onSelectVolume={(vol) => setSelectedVolume(vol)}
+              onAddToCart={handleAddToCart}
+              onOpenStudioWithVolume={handleOpenStudioWithVolume}
+              onOpenReadBook={() => setIsBookReaderOpen(true)}
+            />
+            <PlatesArchiveGallery
+              plates={activePlates}
+              initialCategory="All"
+              onOpenStudioWithPlate={handleOpenStudioWithPlate}
+              onOpenDownloads={() => setIsDownloadsOpen(true)}
+            />
+          </div>
+        )}
 
-        {/* Upcoming Release Teaser */}
-        <UpcomingRelease />
+        {/* PAGE 5: The Architect (About & Manifesto) */}
+        {currentPage === 'about' && (
+          <div className="py-12">
+            <AboutCreator />
+            <InkLedger />
+          </div>
+        )}
 
-        {/* About Creator: The Architect */}
-        <AboutCreator />
+        {/* PAGE 6: Home / Overview Page (Default) */}
+        {currentPage === 'home' && (
+          <>
+            {/* Hero Section */}
+            <Hero />
+
+            {/* Featured Flagship Book Section */}
+            <FeaturedArchives
+              volumes={VOLUMES_DATA}
+              onSelectVolume={(vol) => setSelectedVolume(vol)}
+              onAddToCart={handleAddToCart}
+              onOpenStudioWithVolume={handleOpenStudioWithVolume}
+              onOpenReadBook={() => setIsBookReaderOpen(true)}
+            />
+
+            {/* Line Art Picture Gallery */}
+            <PlatesArchiveGallery
+              plates={activePlates}
+              onOpenStudioWithPlate={handleOpenStudioWithPlate}
+              onOpenDownloads={() => setIsDownloadsOpen(true)}
+              onSelectCategory={(cat) => {
+                if (cat !== 'All') {
+                  handleNavigatePage('category', cat);
+                }
+              }}
+            />
+
+            {/* The Ink & Ledger Newsletter */}
+            <InkLedger />
+
+            {/* Upcoming Release Teaser */}
+            <UpcomingRelease />
+
+            {/* About Creator: The Architect */}
+            <AboutCreator />
+          </>
+        )}
+
       </main>
 
       {/* Footer */}
       <Footer
         onNavigate={scrollToSection}
         onOpenLegal={() => setIsLegalOpen(true)}
+        onNavigatePage={handleNavigatePage}
+        onOpenCart={() => setIsCartOpen(true)}
       />
 
-      {/* Navigation Drawer */}
+      {/* Navigation Drawer (Separated Options & Categories by Page) */}
       <NavDrawer
         isOpen={isNavOpen}
         onClose={() => setIsNavOpen(false)}
-        onNavigate={scrollToSection}
-        onOpenStudio={() => setIsStudioOpen(true)}
-        onOpenDownloads={() => setIsDownloadsOpen(true)}
-        onOpenReadBook={() => setIsBookReaderOpen(true)}
+        currentPage={currentPage}
+        activeCategory={activeCategory}
+        onNavigatePage={handleNavigatePage}
         onOpenCart={() => setIsCartOpen(true)}
         onOpenLegal={() => setIsLegalOpen(true)}
+        cartCount={cartTotalCount}
       />
 
       {/* Shopping Bag / Cart Drawer */}
@@ -241,20 +345,22 @@ export default function App() {
         onAddToCart={handleAddToCart}
         onOpenStudio={(vol) => {
           setSelectedVolume(vol);
-          setIsStudioOpen(true);
+          setCurrentPage('studio');
         }}
       />
 
-      {/* Interactive Digital Ink Studio */}
-      <DigitalColoringStudio
-        isOpen={isStudioOpen}
-        onClose={() => {
-          setIsStudioOpen(false);
-          setCustomStudioPlate(null);
-        }}
-        selectedVolume={selectedVolume}
-        customPlate={customStudioPlate}
-      />
+      {/* Modal fallback for DigitalColoringStudio if opened as modal */}
+      {isStudioOpen && currentPage !== 'studio' && (
+        <DigitalColoringStudio
+          isOpen={isStudioOpen}
+          onClose={() => {
+            setIsStudioOpen(false);
+            setCustomStudioPlate(null);
+          }}
+          selectedVolume={selectedVolume}
+          customPlate={customStudioPlate}
+        />
+      )}
 
       {/* Official Book Reader / Flipbook Modal */}
       <BookPreviewerModal
@@ -262,15 +368,6 @@ export default function App() {
         onClose={() => setIsBookReaderOpen(false)}
         plates={activePlates}
         onOpenStudioWithPage={handleOpenStudioWithPlate}
-      />
-
-      {/* Batch Import Pictures Modal */}
-      <BatchUploadModal
-        isOpen={isBatchUploadOpen}
-        onClose={() => setIsBatchUploadOpen(false)}
-        customPlates={customPlates}
-        onSaveCustomPlates={handleSaveCustomPlates}
-        onResetToDefault={handleResetCustomPlates}
       />
 
       {/* Download Center Modal */}
