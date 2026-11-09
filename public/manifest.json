@@ -14,17 +14,60 @@
   "description": "Curated dark gothic adult coloring book platform and interactive digital coloring studio.",
   "icons": [
     {
-      "src": "/icon-192.png",
+      "src": "/assets/aistudio/LH_LOGO__b2733884.png",
       "sizes": "192x192",
       "type": "image/png",
       "purpose": "any maskable"
     },
     {
-      "src": "/icon-512.png",
+      "src": "/assets/aistudio/LH_LOGO__b2733884.png",
       "sizes": "512x512",
       "type": "image/png",
       "purpose": "any maskable"
     }
   ],
-  "screenshots": []
+  "screenshots": [
+    {
+      "src": "/assets/aistudio/Screenshot_20261108-215718_45307b32.png",
+      "sizes": "1080x2400",
+      "type": "image/png",
+      "form_factor": "narrow",
+      "label": "Creator Bio"
+    },
+    {
+      "src": "/assets/aistudio/Screenshot_20261108-215544_74d2cd37.png",
+      "sizes": "1080x2400",
+      "type": "image/png",
+      "form_factor": "narrow",
+      "label": "Home Page"
+    },
+    {
+      "src": "/assets/aistudio/Screenshot_20261108-215706_6d111dbe.png",
+      "sizes": "1080x2400",
+      "type": "image/png",
+      "form_factor": "narrow",
+      "label": "Book Gallery"
+    },
+    {
+      "src": "/assets/aistudio/Screenshot_20261108-215735_d6e686f8.png",
+      "sizes": "1080x2400",
+      "type": "image/png",
+      "form_factor": "narrow",
+      "label": "Navigation Menu"
+    },
+    {
+      "src": "/assets/aistudio/Screenshot_20261108-215553_b40d73f1.png",
+      "sizes": "1080x2400",
+      "type": "image/png",
+      "form_factor": "narrow",
+      "label": "Flagship Volume"
+    },
+    {
+      "src": "/assets/aistudio/Screenshot_20261108-215613_569d2613.png",
+      "sizes": "1080x2400",
+      "type": "image/png",
+      "form_factor": "narrow",
+      "label": "Upcoming Release"
+    }
+  ]
 }
