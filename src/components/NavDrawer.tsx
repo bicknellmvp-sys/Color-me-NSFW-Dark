@@ -81,119 +81,62 @@ export const NavDrawer: React.FC<NavDrawerProps> = ({
               {/* Home Page */}
               <button
                 onClick={() => handleSelectPage('home')}
-                className={`group w-full flex items-center justify-between p-2.5 text-left border transition-all ${
+                className={`group w-full flex items-center justify-between p-2 text-left border transition-all ${
                   currentPage === 'home'
                     ? 'border-[#e60026] text-white font-semibold'
-                    : 'border-transparent text-[#888888] hover:text-white hover:bg-[#141416]'
+                    : 'border-transparent text-[#888888] hover:text-white'
                 }`}
               >
-                <div className="flex items-center gap-3">
-                  <span className="font-headline text-sm uppercase tracking-wider">
-                    Home (Overview)
-                  </span>
-                </div>
+                <span className="font-headline text-sm uppercase tracking-wider">Home</span>
                 {currentPage === 'home' && <CircleDot className="w-3.5 h-3.5 text-[#e60026]" />}
               </button>
 
               {/* Color by Numbers Studio */}
               <button
                 onClick={() => handleSelectPage('studio')}
-                className={`group w-full flex items-center justify-between p-2.5 text-left border transition-all ${
+                className={`group w-full flex items-center justify-between p-2 text-left border transition-all ${
                   currentPage === 'studio'
                     ? 'border-[#e60026] text-white font-semibold'
-                    : 'border-transparent text-[#888888] hover:text-white hover:bg-[#141416]'
+                    : 'border-transparent text-[#888888] hover:text-white'
                 }`}
               >
-                <div className="flex items-center gap-3">
-                  <div>
-                    <span className="font-headline text-sm uppercase tracking-wider block">
-                      DECOMPRESS W/ EROTIC ART
-                    </span>
-                    <span className="text-[10px] font-inter text-[#666666] block">
-                      Dark-themed palette studio
-                    </span>
-                  </div>
-                </div>
-                <span className={`text-[9px] px-2 py-0.5 font-mono font-bold uppercase ${currentPage === 'studio' ? 'text-white' : 'text-[#888888]'}`}>
-                  DARK STUDIO
-                </span>
+                <span className="font-headline text-sm uppercase tracking-wider">Studio</span>
               </button>
 
               {/* Flagship Volume 01 */}
               <button
                 onClick={() => handleSelectPage('volume')}
-                className={`group w-full flex items-center justify-between p-2.5 text-left border transition-all ${
+                className={`group w-full flex items-center justify-between p-2 text-left border transition-all ${
                   currentPage === 'volume'
                     ? 'border-[#e60026] text-white font-semibold'
-                    : 'border-transparent text-[#888888] hover:text-white hover:bg-[#141416]'
+                    : 'border-transparent text-[#888888] hover:text-white'
                 }`}
               >
-                <div className="flex items-center gap-3">
-                  <span className="font-headline text-sm uppercase tracking-wider">
-                    COLOR ME NSFW
-                    <br />
-                    Vol. 01 — The Bound Form
-                  </span>
-                </div>
-                <div className="rotate-12 flex flex-col border border-[#e60026] overflow-hidden shrink-0">
-                  <span className="bg-[#e60026] text-white px-1 py-0 text-[7px] font-mono font-bold uppercase">
-                    NOW ON SALE!
-                  </span>
-                  <span className="bg-[#0c0c0e] text-[#e60026] px-1 py-0 text-[7px] font-mono font-bold uppercase">
-                    FIRST EDITION
-                  </span>
-                </div>
+                <span className="font-headline text-sm uppercase tracking-wider">Volumes</span>
               </button>
 
               {/* FLIPBOOK (IN COLOR) */}
               <button
                 onClick={() => handleSelectPage('reader')}
-                className={`group w-full flex items-center justify-between p-2.5 text-left border transition-all ${
+                className={`group w-full flex items-center justify-between p-2 text-left border transition-all ${
                   currentPage === 'reader'
                     ? 'border-[#e60026] text-white font-semibold'
-                    : 'border-transparent text-[#888888] hover:text-white hover:bg-[#141416]'
+                    : 'border-transparent text-[#888888] hover:text-white'
                 }`}
               >
-                <div className="flex items-center gap-3">
-                  <span className="font-headline text-sm uppercase tracking-wider">
-                    FLIPBOOK (IN COLOR)
-                  </span>
-                </div>
-                <span className="text-[10px] text-[#666666] font-mono">42 PAGES</span>
+                <span className="font-headline text-sm uppercase tracking-wider">Flipbook</span>
               </button>
 
               {/* Download Center */}
               <button
                 onClick={() => handleSelectPage('downloads')}
-                className={`group w-full flex items-center justify-between p-2.5 text-left border transition-all ${
+                className={`group w-full flex items-center justify-between p-2 text-left border transition-all ${
                   currentPage === 'downloads'
                     ? 'border-[#e60026] text-white font-semibold'
-                    : 'border-transparent text-[#888888] hover:text-white hover:bg-[#141416]'
+                    : 'border-transparent text-[#888888] hover:text-white'
                 }`}
               >
-                <div className="flex items-center gap-3">
-                  <span className="font-headline text-sm uppercase tracking-wider">
-                    Downloads Center
-                  </span>
-                </div>
-                <span className="text-[10px] text-[#666666] font-mono">FREE PACKS</span>
-              </button>
-
-              {/* The Architect */}
-              <button
-                onClick={() => handleSelectPage('about')}
-                className={`group w-full flex items-center justify-between p-2.5 text-left border transition-all ${
-                  currentPage === 'about'
-                    ? 'border-[#e60026] text-white font-semibold'
-                    : 'border-transparent text-[#888888] hover:text-white hover:bg-[#141416]'
-                }`}
-              >
-                <div className="flex items-center gap-3">
-                  <span className="font-headline text-sm uppercase tracking-wider">
-                    The Architect (About)
-                  </span>
-                </div>
-                <span className="text-[10px] text-[#666666] font-mono">MANIFESTO</span>
+                <span className="font-headline text-sm uppercase tracking-wider">Downloads</span>
               </button>
 
               {/* Shopping Cart Button */}
@@ -202,24 +145,17 @@ export const NavDrawer: React.FC<NavDrawerProps> = ({
                   onOpenCart();
                   onClose();
                 }}
-                className={`group w-full flex items-center justify-between p-2.5 text-left border transition-all ${
-                  currentPage === 'cart'
-                    ? 'border-[#e60026] text-white font-semibold'
-                    : 'border-transparent text-[#888888] hover:text-white hover:bg-[#141416]'
-                }`}
+                className="group w-full flex items-center justify-between p-2 text-left border border-transparent text-[#888888] hover:text-white"
               >
-                <div className="flex items-center gap-2.5">
-                  <span className="font-headline text-sm uppercase tracking-wider font-semibold">
-                    Shopping Cart
-                  </span>
-                </div>
-                {cartCount > 0 ? (
-                  <span className="bg-[#e60026] text-white text-[10px] font-mono font-bold px-2 py-0.5 rounded-full">
-                    {cartCount} items
-                  </span>
-                ) : (
-                  <span className="text-[10px] font-mono text-[#777777]">Empty</span>
-                )}
+                <span className="font-headline text-sm uppercase tracking-wider">Cart ({cartCount})</span>
+              </button>
+
+              {/* News & Notifications */}
+              <button
+                onClick={() => handleSelectPage('home')}
+                className="group w-full flex items-center justify-between p-2 text-left border border-transparent text-[#888888] hover:text-white"
+              >
+                <span className="font-headline text-sm uppercase tracking-wider">News & Notifications</span>
               </button>
             </nav>
           </div>
@@ -228,7 +164,7 @@ export const NavDrawer: React.FC<NavDrawerProps> = ({
           <div className="border-t border-[#26262a] pt-5 mb-6">
             <div className="flex items-center justify-between mb-3">
               <span className="text-[10px] font-mono text-[#e60026] uppercase font-bold tracking-[0.2em] block">
-                Browse Categories
+                Categories
               </span>
             </div>
 
@@ -240,29 +176,16 @@ export const NavDrawer: React.FC<NavDrawerProps> = ({
                   <button
                     key={cat.name}
                     onClick={() => handleSelectPage('category', cat.name)}
-                    className={`group w-full flex items-center justify-between p-2.5 text-left border transition-all ${
+                    className={`group w-full flex items-center justify-between p-2 text-left border transition-all ${
                       isCatActive
                         ? 'border-[#e60026] text-white font-semibold'
-                        : 'border-transparent text-[#888888] hover:text-white hover:bg-[#141416]'
+                        : 'border-transparent text-[#888888] hover:text-white'
                     }`}
                   >
-                    <div className="flex items-center gap-3">
-                      <div>
-                        <span className="font-headline text-xs uppercase tracking-wider block">
-                          {cat.name}
-                        </span>
-                        <span className="text-[10px] font-inter text-[#666666] block truncate max-w-[200px]">
-                          {cat.desc}
-                        </span>
-                      </div>
-                    </div>
-
-                    <div className="flex items-center gap-1.5 shrink-0">
-                      <span className="text-[9px] font-mono text-[#888888]">
-                        {cat.count}
-                      </span>
-                      <ChevronRight className={`w-3.5 h-3.5 ${isCatActive ? 'text-[#e60026]' : 'text-[#555555]'}`} />
-                    </div>
+                    <span className="font-headline text-xs uppercase tracking-wider">
+                      {cat.name}
+                    </span>
+                    <ChevronRight className={`w-3.5 h-3.5 ${isCatActive ? 'text-[#e60026]' : 'text-[#555555]'}`} />
                   </button>
                 );
               })}

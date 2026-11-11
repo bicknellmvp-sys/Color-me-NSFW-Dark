@@ -36,18 +36,7 @@ export const Hero: React.FC = () => {
 
       {/* Hero Content */}
       <div className="relative z-10 text-center px-6 md:px-16 flex flex-col items-center gap-6 max-w-5xl py-16">
-        <div className="flex flex-col items-center gap-1">
-          <div className="text-xs text-[#ffb3ae] tracking-widest uppercase font-semibold">
-            DECOMPRESS W/
-          </div>
-
-          <div className="inline-flex items-center gap-2 px-3 py-1 bg-black/70 border border-[#2a2a30] text-xs text-[#ffb3ae] tracking-widest uppercase font-semibold backdrop-blur-md">
-            <Sparkles className="w-3.5 h-3.5 text-[#e60026]" />
-            <span>EROTIC LINE ART COLLECTION FOR COLORING ENTHUSIASTS</span>
-          </div>
-        </div>
-
-        <h1 className="font-headline text-4xl sm:text-6xl md:text-7xl text-[#ffffff] uppercase tracking-tighter leading-[1.1] max-w-4xl">
+        <h1 className="font-headline text-3xl sm:text-4xl md:text-5xl text-[#ffffff] uppercase tracking-tighter leading-[1.1] max-w-4xl">
           Embrace the <span className="text-[#e60026] italic font-normal">Darkness</span> Within
         </h1>
 

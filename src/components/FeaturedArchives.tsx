@@ -85,21 +85,7 @@ export const FeaturedArchives: React.FC<FeaturedArchivesProps> = ({
               </div>
             </div>
 
-            {/* Quick Specs Bar */}
-            <div className="grid grid-cols-3 gap-2 text-center bg-[#0d0d0d] p-3 border border-[#222222]">
-              <div>
-                <span className="text-[10px] font-mono text-[#808080] uppercase block">Plates</span>
-                <span className="font-mono text-xs text-[#e0e0e0] font-bold">42 Original</span>
-              </div>
-              <div className="border-x border-[#222222]">
-                <span className="text-[10px] font-mono text-[#808080] uppercase block">Paper</span>
-                <span className="font-mono text-xs text-[#e0e0e0] font-bold">160gsm Matte</span>
-              </div>
-              <div>
-                <span className="text-[10px] font-mono text-[#808080] uppercase block">Binding</span>
-                <span className="font-mono text-xs text-[#e0e0e0] font-bold">Lay-Flat 180°</span>
-              </div>
-            </div>
+
           </div>
 
           {/* Right Column: Book Details & Purchase Options */}

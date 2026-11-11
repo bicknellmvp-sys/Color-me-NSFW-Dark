@@ -174,15 +174,7 @@ export default function App() {
       {/* Age Gate 18+ Advisory */}
       <AgeGateModal />
 
-      {/* Fixed Watermark Sigil Layer */}
-      <div className="fixed inset-0 z-0 pointer-events-none flex items-center justify-center overflow-hidden opacity-10">
-        <img
-          alt="Laevus Sigil"
-          referrerPolicy="no-referrer"
-          className="w-full max-w-none md:w-[120%] h-auto object-contain mix-blend-screen scale-150"
-          src={SVG_SOLOMONIC_DEMON}
-        />
-      </div>
+
 
       {/* Top Header */}
       <Header
@@ -263,7 +255,6 @@ export default function App() {
         {/* PAGE 5: The Architect (About & Manifesto) */}
         {currentPage === 'about' && (
           <div className="py-12">
-            <AboutCreator />
             <InkLedger />
           </div>
         )}
@@ -271,9 +262,9 @@ export default function App() {
         {/* PAGE 6: Home / Overview Page (Default) */}
         {currentPage === 'home' && (
           <>
-            {/* Hero Section */}
-            <Hero />
-
+        {/* PAGE 6: Home / Overview Page (Default) */}
+        {currentPage === 'home' && (
+          <>
             {/* Featured Flagship Book Section */}
             <FeaturedArchives
               volumes={VOLUMES_DATA}
@@ -294,15 +285,8 @@ export default function App() {
                 }
               }}
             />
-
-            {/* The Ink & Ledger Newsletter */}
-            <InkLedger />
-
-            {/* Upcoming Release Teaser */}
-            <UpcomingRelease />
-
-            {/* About Creator: The Architect */}
-            <AboutCreator />
+          </>
+        )}
           </>
         )}
 
@@ -381,6 +365,43 @@ export default function App() {
         isOpen={isLegalOpen}
         onClose={() => setIsLegalOpen(false)}
       />
+
+      {/* Native Mobile Bottom App Bar (Android / Mobile Optimized) */}
+      <nav className="fixed bottom-0 left-0 right-0 z-40 bg-[#0c0c0e]/95 backdrop-blur-md border-t border-[#26262a] flex items-center justify-around py-2 px-2 md:hidden pb-[max(0.5rem,env(safe-area-inset-bottom))] shadow-2xl">
+        <button
+          onClick={() => handleNavigatePage('home')}
+          className={`flex flex-col items-center gap-0.5 transition-colors p-1 ${currentPage === 'home' ? 'text-[#e60026]' : 'text-[#888888] hover:text-white'}`}
+        >
+          <span className="material-symbols-outlined text-lg">home</span>
+          <span className="text-[9px] font-mono uppercase tracking-wider font-bold">Home</span>
+        </button>
+        <button
+          onClick={() => handleNavigatePage('gallery')}
+          className={`flex flex-col items-center gap-0.5 transition-colors p-1 ${currentPage === 'gallery' || currentPage === 'category' ? 'text-[#e60026]' : 'text-[#888888] hover:text-white'}`}
+        >
+          <span className="material-symbols-outlined text-lg">grid_view</span>
+          <span className="text-[9px] font-mono uppercase tracking-wider font-bold">Gallery</span>
+        </button>
+        <button
+          onClick={() => handleNavigatePage('studio')}
+          className={`flex flex-col items-center gap-0.5 transition-colors p-1 ${currentPage === 'studio' ? 'text-[#e60026]' : 'text-[#888888] hover:text-white'}`}
+        >
+          <span className="material-symbols-outlined text-lg">palette</span>
+          <span className="text-[9px] font-mono uppercase tracking-wider font-bold">Studio</span>
+        </button>
+        <button
+          onClick={() => setIsCartOpen(true)}
+          className="flex flex-col items-center gap-0.5 text-[#888888] hover:text-white relative p-1"
+        >
+          <span className="material-symbols-outlined text-lg">shopping_bag</span>
+          <span className="text-[9px] font-mono uppercase tracking-wider font-bold">Cart</span>
+          {cartTotalCount > 0 && (
+            <span className="absolute -top-0.5 right-1.5 w-3.5 h-3.5 bg-[#e60026] text-white text-[8px] font-bold rounded-full flex items-center justify-center">
+              {cartTotalCount}
+            </span>
+          )}
+        </button>
+      </nav>
     </div>
   );
 }
